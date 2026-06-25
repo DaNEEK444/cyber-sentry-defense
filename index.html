@@ -5,157 +5,131 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Cyber Sentry Defense</title>
   <meta name="description" content="Cyber Sentry Defense — free cyber checkup, vulnerability reports, hygiene setup, and small business protection." />
-
-  <!-- Minimal, self-contained styles to avoid external overrides -->
   <style>
     :root{
-      --bg:#071029;
-      --card:#0f1724;
-      --accent:#06b6d4;
-      --muted:rgba(255,255,255,0.88);
-      --muted-2:rgba(255,255,255,0.75);
-      --radius:12px;
-      --max:1100px;
+      --bg:#071029; --surface:#0f1724; --primary:#06B6D4; --primary-dark:#042028;
+      --text:#E6F6FB; --muted:rgba(230,246,251,0.85); --radius:12px; --max:1100px;
       font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,#020617 0%, #071029 100%);color:var(--muted);-webkit-font-smoothing:antialiased}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#020617 0%,var(--bg) 100%);color:var(--text);-webkit-font-smoothing:antialiased}
     a{color:inherit}
     .container{max-width:var(--max);margin:0 auto;padding:0 20px}
 
-    /* HERO */
-    #hero{display:block !important; position:relative; z-index:9999; padding:56px 0; text-align:center; background:linear-gradient(180deg,#071029 0%,#041226 100%)}
+    /* Header */
+    header#site-header{position:relative;z-index:10000}
+    .site-top{display:flex;align-items:center;justify-content:space-between;padding:18px 20px}
+    .wordmark{display:flex;gap:12px;align-items:center;text-decoration:none}
+    .brand-name{font-weight:800;font-size:18px;color:var(--text);line-height:1}
+    .brand-sub{font-weight:500;font-size:12px;color:var(--muted);margin-top:2px}
+    .tagline-pill{font-size:13px;color:var(--muted);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03)}
+
+    /* Hero */
+    #hero{display:block;position:relative;z-index:9999;background:linear-gradient(180deg,#071029 0%,#041226 100%);padding:56px 20px;text-align:center}
     #hero .inner{max-width:920px;margin:0 auto}
     #hero h1{color:#fff;font-size:2.25rem;line-height:1.05;margin:0 0 12px;font-weight:800}
     #hero p.lead{color:var(--muted);font-size:1.125rem;margin:0 0 18px}
     .hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px}
     .btn{display:inline-block;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700}
-    .btn.primary{background:var(--accent);color:#042028}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);color:#cfeff6}
+    .btn.primary{background:var(--primary);color:var(--primary-dark)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--text)}
 
-    /* SERVICES */
+    /* Services */
     section.services{padding:48px 0}
     .section-title{text-align:center;font-size:1.5rem;margin:0 0 18px;color:#dff7fb}
     .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;max-width:var(--max);margin:0 auto;padding:0 20px}
-    .card{background:var(--card);border-radius:var(--radius);padding:18px;border:1px solid rgba(255,255,255,0.04);color:var(--muted);display:flex;flex-direction:column;gap:12px;min-height:170px}
+    .card{background:var(--surface);border-radius:var(--radius);padding:18px;border:1px solid rgba(255,255,255,0.04);color:var(--muted);display:flex;flex-direction:column;gap:12px;min-height:170px}
     .card h3{margin:0;font-size:1.125rem}
-    .card p{margin:0;color:var(--muted-2);flex:1}
-    .card a.cta{align-self:start;padding:10px 14px;border-radius:10px;background:var(--accent);color:#042028;text-decoration:none;font-weight:700}
+    .card p{margin:0;color:rgba(255,255,255,0.8);flex:1}
+    .card a.cta{align-self:start;padding:10px 14px;border-radius:10px;background:var(--primary);color:var(--primary-dark);text-decoration:none;font-weight:700}
 
-    /* Other sections */
+    /* Other */
     .ai-agent,.mission,.founder,.testimonials,.contact{padding:36px 0}
     footer{padding:20px;text-align:center;color:rgba(255,255,255,0.6)}
     .founder-wrapper{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
     .founder-photo{width:120px;height:120px;border-radius:12px;object-fit:cover;border:1px solid rgba(255,255,255,0.04)}
     form{display:flex;flex-direction:column;gap:10px;max-width:560px;margin:0 auto}
     input,textarea{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit}
-    button.cta{padding:12px;border-radius:10px;background:var(--accent);border:none;color:#042028;font-weight:700;cursor:pointer}
+    button.cta{padding:12px;border-radius:10px;background:var(--primary);border:none;color:var(--primary-dark);font-weight:700;cursor:pointer}
 
     /* Floating widget */
     #cs-ai-widget{position:fixed;bottom:24px;right:24px;background:#0A0F1F;color:white;padding:12px 16px;border-radius:50px;display:flex;align-items:center;gap:10px;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,0.25);z-index:99999}
     #cs-ai-chat{position:fixed;bottom:90px;right:24px;width:360px;height:520px;background:white;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.25);display:none;overflow:hidden;z-index:99999}
     #cs-ai-widget:focus{outline:3px solid rgba(6,182,212,0.18);outline-offset:3px}
 
-    /* Utility */
     .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
     @media(min-width:768px){ #hero h1{font-size:3rem} #hero p.lead{font-size:1.25rem} }
   </style>
 </head>
 <body>
-<!-- SITE HEADER + HERO START -->
-<header id="site-header" style="background:transparent;position:relative;z-index:10000;">
-  <div class="container" style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px;max-width:1100px;margin:0 auto;">
-    <!-- Logo / wordmark -->
-    <a href="/" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-      <!-- Inline SVG logo -->
-      <svg width="48" height="32" viewBox="0 0 96 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="flex:0 0 auto;">
-        <g transform="translate(6,4)">
-          <path d="M24 0 L48 8 V28 C48 44 32 56 24 60 C16 56 0 44 0 28 V8 Z"
-                fill="#06B6D4" stroke="#042028" stroke-width="1.5"/>
-          <path d="M12 20 L20 28 L36 12" fill="none" stroke="#042028" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </g>
-      </svg>
 
-      <div style="line-height:1;">
-        <div style="font-family:Inter,system-ui,Arial;font-weight:800;font-size:18px;color:#E6F6FB;letter-spacing:0.2px;">Cyber Sentry</div>
-        <div style="font-family:Inter,system-ui,Arial;font-weight:500;font-size:12px;color:rgba(230,246,251,0.85);margin-top:2px;">Defense</div>
-      </div>
-    </a>
+  <!-- Header -->
+  <header id="site-header" role="banner">
+    <div class="container site-top">
+      <a class="wordmark" href="/" aria-label="Cyber Sentry Defense home">
+        <!-- Inline SVG logo -->
+        <svg width="48" height="32" viewBox="0 0 96 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <g transform="translate(6,4)">
+            <path d="M24 0 L48 8 V28 C48 44 32 56 24 60 C16 56 0 44 0 28 V8 Z" fill="#06B6D4" stroke="#042028" stroke-width="1.5"/>
+            <path d="M12 20 L20 28 L36 12" fill="none" stroke="#042028" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>
+        <div>
+          <div class="brand-name">Cyber Sentry</div>
+          <div class="brand-sub">Defense</div>
+        </div>
+      </a>
 
-    <!-- Slogan or small tagline on the right -->
-    <div style="font-family:Inter,system-ui,Arial;font-size:13px;color:rgba(230,246,251,0.85);">
-      <span style="display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);">Simple. Human. Secure.</span>
+      <div class="tagline-pill" aria-hidden="true">Simple. Human. Secure.</div>
     </div>
-  </div>
-</header>
+  </header>
 
-<section id="hero" role="region" aria-labelledby="hero-heading" style="display:block !important; position:relative; z-index:9999; background:linear-gradient(180deg,#071029 0%,#041226 100%); color:#fff; padding:56px 20px; text-align:center;">
-  <div class="hero-inner container" style="max-width:920px;margin:0 auto;">
-    <h1 id="hero-heading" style="margin:0 0 12px;font-size:2.25rem;line-height:1.05;font-weight:700;color:#fff;">Get a Free 15‑Minute Cyber Checkup</h1>
-    <p class="hero-sub" style="font-size:1.125rem;margin:0 0 20px;color:rgba(230,246,251,0.95);">I’ll identify one real vulnerability your business has today — and show you how to fix it. No pressure. No jargon.</p>
-
-    <div class="hero-ctas" role="group" aria-label="Primary calls to action" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <a id="book-checkup" href="https://calendly.com/YOUR-LINK-HERE" class="btn primary" style="display:inline-block;padding:12px 18px;border-radius:10px;background:#06B6D4;color:#042028;text-decoration:none;font-weight:700;" aria-label="Book your free 15 minute cyber checkup">Book Your Free Checkup</a>
-      <a href="#services" class="btn secondary" style="display:inline-block;padding:12px 18px;border-radius:10px;background:transparent;color:#cfeff6;border:1px solid rgba(255,255,255,0.08);text-decoration:none;font-weight:700;" aria-label="See our services">See Our Services</a>
-    </div>
-
-    <p class="trust-text" style="margin-top:18px;color:rgba(230,246,251,0.85);">Real cybersecurity help for everyday people and small businesses.</p>
-  </div>
-</section>
-<!-- SITE HEADER + HERO END -->
-
-  <!-- HERO -->
+  <!-- Hero (single copy) -->
   <section id="hero" role="region" aria-labelledby="hero-heading">
     <div class="inner container">
       <h1 id="hero-heading">Get a Free 15‑Minute Cyber Checkup</h1>
       <p class="lead">I’ll identify one real vulnerability your business has today — and show you how to fix it. No pressure. No jargon.</p>
 
       <div class="hero-ctas" role="group" aria-label="Primary calls to action">
-        <a id="book-checkup" class="btn primary" href="https://calendly.com/YOUR-LINK-HERE" aria-label="Book your free 15 minute cyber checkup">Book Your Free Checkup</a>
+        <a id="book-checkup" class="btn primary" href="https://calendly.com/cybersentrydefense-proton" aria-label="Book your free 15 minute cyber checkup">Book Your Free Checkup</a>
         <a class="btn ghost" href="#services" aria-label="See our services">See Our Services</a>
       </div>
 
-      <p style="margin-top:18px;color:var(--muted-2)">Real cybersecurity help for everyday people and small businesses.</p>
+      <p style="margin-top:18px;color:var(--muted)">Real cybersecurity help for everyday people and small businesses.</p>
     </div>
   </section>
 
-  <!-- SERVICES -->
+  <!-- Services -->
   <section id="services" class="services" role="region" aria-labelledby="services-heading">
     <h2 id="services-heading" class="section-title">Our Services</h2>
 
     <div class="services-grid" aria-live="polite">
-
-      <!-- 1 Free Cyber Checkup -->
       <article class="card" id="svc-free" role="article" aria-labelledby="svc-free-title">
         <h3 id="svc-free-title">Free Cyber Checkup</h3>
         <p>15–20 minute call where we identify one real vulnerability your business has today and give a clear next step.</p>
-        <a class="cta" href="https://calendly.com/YOUR-LINK" aria-label="Book free cyber checkup">Book Free Checkup</a>
+        <a class="cta" href="https://calendly.com/cybersentrydefense-proton" aria-label="Book free cyber checkup">Book Free Checkup</a>
       </article>
 
-      <!-- 2 Vulnerability Report -->
       <article class="card" id="svc-report" role="article" aria-labelledby="svc-report-title">
         <h3 id="svc-report-title">Vulnerability Report — $200</h3>
         <p>A prioritized list of vulnerabilities, risk ratings, and step‑by‑step fixes delivered within 48 hours.</p>
-        <a class="cta" href="https://calendly.com/YOUR-LINK" aria-label="Request vulnerability report">Request Report</a>
+        <a class="cta" href="https://calendly.com/cybersentrydefense-proton" aria-label="Request vulnerability report">Request Report</a>
       </article>
 
-      <!-- 3 Cyber Hygiene Setup -->
       <article class="card" id="svc-setup" role="article" aria-labelledby="svc-setup-title">
         <h3 id="svc-setup-title">Cyber Hygiene Setup — $549</h3>
         <p>Beginner‑friendly protection setup: secure accounts, backups, basic monitoring, and staff guidance.</p>
-        <a class="cta" href="https://calendly.com/YOUR-LINK" aria-label="Purchase cyber hygiene setup">Get Protected</a>
+        <a class="cta" href="https://calendly.com/cybersentrydefense-proton" aria-label="Purchase cyber hygiene setup">Get Protected</a>
       </article>
 
-      <!-- 4 Small Business Protection Plan -->
       <article class="card" id="svc-plan" role="article" aria-labelledby="svc-plan-title">
         <h3 id="svc-plan-title">Small Business Protection Plan — $999/mo</h3>
         <p>Ongoing support, monthly scans, priority help, and incident guidance for small businesses.</p>
-        <a class="cta" href="https://calendly.com/YOUR-LINK" aria-label="Schedule consultation for protection plan">Schedule Consultation</a>
+        <a class="cta" href="https://calendly.com/cybersentrydefense-proton" aria-label="Schedule consultation for protection plan">Schedule Consultation</a>
       </article>
-
     </div>
   </section>
 
-  <!-- AI AGENT -->
+  <!-- AI Agent -->
   <section id="ai-agent" class="ai-agent" role="region" aria-labelledby="ai-agent-heading">
     <div class="container">
       <h2 id="ai-agent-heading">Meet the Cyber Sentry AI Agent</h2>
@@ -164,7 +138,7 @@
     </div>
   </section>
 
-  <!-- MISSION -->
+  <!-- Mission -->
   <section class="mission" role="region" aria-labelledby="mission-heading">
     <div class="container">
       <h2 id="mission-heading">Our Mission</h2>
@@ -172,7 +146,7 @@
     </div>
   </section>
 
-  <!-- FOUNDER -->
+  <!-- Founder -->
   <section class="founder" role="region" aria-labelledby="founder-heading">
     <div class="container">
       <h2 id="founder-heading">Meet the Founder</h2>
@@ -183,17 +157,15 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
+  <!-- Testimonials -->
   <section class="testimonials" role="region" aria-labelledby="testimonials-heading">
     <div class="container">
       <h2 id="testimonials-heading">What People Say</h2>
-      <div class="card" style="min-height:auto">
-        “Danika made cybersecurity feel simple. I finally understand how to protect myself.” — Client, Louisville KY
-      </div>
+      <div class="card" style="min-height:auto">“Danika made cybersecurity feel simple. I finally understand how to protect myself.” — Client, Louisville KY</div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- Contact -->
   <section class="contact" role="region" aria-labelledby="contact-heading">
     <div class="container">
       <h2 id="contact-heading">Request Help</h2>
@@ -214,17 +186,16 @@
 
   <footer role="contentinfo">Cyber Sentry Defense © <span id="year"></span></footer>
 
-  <!-- Floating AI widget and chat -->
+  <!-- Floating AI widget -->
   <div id="cs-ai-widget" tabindex="0" aria-label="Open Cyber Sentry AI chat">
     <span style="font-size:18px">🤖</span><span>Cyber Sentry AI</span>
   </div>
-
   <div id="cs-ai-chat" aria-hidden="true">
     <iframe src="about:blank" title="Cyber Sentry AI chat" style="width:100%;height:100%;border:0"></iframe>
   </div>
 
   <script>
-    // Small JS: year, widget toggle, smooth scroll for anchors
+    // Small JS: year, widget toggle, smooth scroll
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const widget = document.getElementById('cs-ai-widget');
@@ -238,7 +209,6 @@
       if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); widget.click(); }
     });
 
-    // Smooth scroll for internal anchors
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click', (e)=>{
         const target = document.querySelector(a.getAttribute('href'));
@@ -246,7 +216,7 @@
       });
     });
 
-    // Ensure hero is visible (defensive)
+    // Defensive: ensure hero visible
     (function ensureHero(){
       const h = document.getElementById('hero');
       if(h){
@@ -258,6 +228,5 @@
       }
     })();
   </script>
-
 </body>
 </html>
