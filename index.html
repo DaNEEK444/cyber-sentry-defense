@@ -23,24 +23,52 @@
     .brand-sub{font-weight:500;font-size:12px;color:var(--muted);margin-top:2px}
     .tagline-pill{font-size:13px;color:var(--muted);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03)}
 
-    /* Hero */
-    #hero{display:block;position:relative;z-index:9999;background:linear-gradient(180deg,#071029 0%,#041226 100%);padding:56px 20px;text-align:center}
-    #hero .inner{max-width:920px;margin:0 auto}
-    #hero h1{color:#fff;font-size:2.25rem;line-height:1.05;margin:0 0 12px;font-weight:800}
-    #hero p.lead{color:var(--muted);font-size:1.125rem;margin:0 0 18px}
-    .hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px}
-    .btn{display:inline-block;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700}
-    .btn.primary{background:var(--primary);color:var(--primary-dark)}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--text)}
+    <!-- Hero CTAs -->
+<div class="hero-ctas">
+  <a class="btn btn-primary" href="CALENDLY_URL?utm_source=site&utm_medium=cta&utm_campaign=hero" id="hero-book-free">Book Free 15‑Minute Security Check</a>
+  <a class="btn btn-secondary" href="KOFI_99?utm_source=site&utm_medium=cta&utm_campaign=buy99" target="_blank" rel="noopener" id="hero-buy-99">Buy Scam Proof Setup — $99</a>
+  <p class="hero-micro">No tech skills required. 15 minutes. No obligation.</p>
+</div>
 
-    /* Services */
-    section.services{padding:48px 0}
-    .section-title{text-align:center;font-size:1.5rem;margin:0 0 18px;color:#dff7fb}
-    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;max-width:var(--max);margin:0 auto;padding:0 20px}
-    .card{background:var(--surface);border-radius:var(--radius);padding:18px;border:1px solid rgba(255,255,255,0.04);color:var(--muted);display:flex;flex-direction:column;gap:12px;min-height:170px}
-    .card h3{margin:0;font-size:1.125rem}
-    .card p{margin:0;color:rgba(255,255,255,0.8);flex:1}
-    .card a.cta{align-self:start;padding:10px 14px;border-radius:10px;background:var(--primary);color:var(--primary-dark);text-decoration:none;font-weight:700}
+<!-- Services section (ordered for conversion) -->
+<section id="services" class="services-grid">
+  <!-- Free Check -->
+  <div class="service-card" id="svc-free-card">
+    <h3>Free 15‑Minute Security Check</h3>
+    <p>Quick triage call to identify your top 2–3 risks and immediate fixes.</p>
+    <a class="btn" href="CALENDLY_URL?utm_source=site&utm_medium=card&utm_campaign=freecheck" id="svc-free">Book Free Check</a>
+  </div>
+
+  <!-- Starter Kit $19 -->
+  <div class="service-card" id="svc-starter-card">
+    <h3>Starter Kit — $19</h3>
+    <p>Checklist + screencast to harden passwords and enable 2FA.</p>
+    <a class="btn" href="KOFI_STARTER?utm_source=site&utm_medium=card&utm_campaign=starter19" target="_blank" rel="noopener" id="svc-starter">Get Starter Kit</a>
+  </div>
+
+  <!-- Scam Proof Setup $99 (Most popular) -->
+  <div class="service-card popular" id="svc-99-card">
+    <div class="badge">Most popular</div>
+    <h3>Scam Proof Setup — $99</h3>
+    <p>30–60 minute remote session; checklist; screencast.</p>
+    <a class="btn btn-primary" href="KOFI_99?utm_source=site&utm_medium=card&utm_campaign=buy99" target="_blank" rel="noopener" id="svc-99">Buy — $99</a>
+  </div>
+
+  <!-- Basic Security Audit $199 -->
+  <div class="service-card" id="svc-199-card">
+    <h3>Basic Security Audit — $199</h3>
+    <p>60–90 minute audit; prioritized findings; remediation checklist.</p>
+    <a class="btn" href="KOFI_199_OR_CALENDLY?utm_source=site&utm_medium=card&utm_campaign=audit199" id="svc-199">Book Audit</a>
+  </div>
+
+  <!-- Vulnerability Report $200 -->
+  <div class="service-card" id="svc-200-card">
+    <h3>Vulnerability Report — $200</h3>
+    <p>Written findings + prioritized remediation + 30‑minute walkthrough.</p>
+    <a class="btn" href="KOFI_200?utm_source=site&utm_medium=card&utm_campaign=report200" target="_blank" rel="noopener" id="svc-200">Buy Report</a>
+  </div>
+</section>
+t:700}
 
     /* Other */
     .ai-agent,.mission,.founder,.testimonials,.contact{padding:36px 0}
